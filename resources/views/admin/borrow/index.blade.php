@@ -12,10 +12,13 @@
         <table id="dataTable" class="table table-bordered table-hover">
             <thead>
                 <tr>
-                    <th>Id</th>
+                    <th>Id_pasien</th>
                     <th>Nama</th>
-                    <th>Judul Buku</th>
-                    <th>Aksi</th>
+                    <th>umur</th>
+                    <th>gender</th>
+                    <th>alamat</th>
+                    <th>penyakit</th>
+                    <th>id_dokter</th>
                 </tr>
             </thead>
         </table>
@@ -57,13 +60,25 @@
                     searchable: false
                 },
                 {
-                    data: 'user'
+                    data: 'id_pasien'
                 },
                 {
-                    data: 'book_title'
+                    data: 'nama'
                 },
                 {
-                    data: 'Aksi'
+                    data: 'umur'
+                },
+                {
+                    data: 'gender'
+                },
+                {
+                    data: 'alamat'
+                },
+                {
+                    data: 'penyakit'
+                },
+                {
+                    data: 'id_dokter'
                 }
             ]
         });

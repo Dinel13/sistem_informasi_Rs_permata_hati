@@ -35,17 +35,12 @@ class PasienController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'id_pasien'=>'required',
-            'nama'=>'required',
-            'umur'=>'required',
-            'gender'=>'required',
-            'alamat'=>'required',
-            'penyakit'=>'required',
-            'id_dokter'=>'required',
-            'id_dokter'=>'required',
+            'id_patients',
+            'tanggal',
+            'lab_no',
             ]);
 
-            Pasien::create($request->all());
+            Outpatient::create($request->all());
 
             return redirect()->route('admin.borrow.index')
             
@@ -59,7 +54,7 @@ class PasienController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Pasien $pasien)
+    public function show(Outpatient $outpatient)
     {
         return view('admin.borrow.show',compact('admin.borrow'));
     }
@@ -70,7 +65,7 @@ class PasienController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Pasien $pasien)
+    public function edit(Outpatient $outpatient)
     {
         return view('admin.borrow.edit',compact('admin.borrow'));
     }
@@ -82,13 +77,13 @@ class PasienController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Pasien $pasien)
+    public function update(Request $request, Outpatient $outpatient)
     {
         $request->validate([
 
         ]);
 
-        $pasien->update($request->all());
+        $outpatient->update($request->all());
 
         return redirect()->route('admin.borrow.index')
         ->with('success','Pasien update successfully');
@@ -100,7 +95,7 @@ class PasienController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Pasien $pasien)
+    public function destroy(Outpatient $outpatient)
     {
         $pasien->delete();
 

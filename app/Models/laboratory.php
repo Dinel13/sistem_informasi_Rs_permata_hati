@@ -8,4 +8,13 @@ use Illuminate\Database\Eloquent\Model;
 class laboratory extends Model
 {
     use HasFactory;
+
+    protected $fillable = [
+        'lab_no',
+        'id_pasien',
+        'id_dokter',
+        'jenis_tes',
+        'tanggal_tes',
+        'jumlah',
+    ];
 }

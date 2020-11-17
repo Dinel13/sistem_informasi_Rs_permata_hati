@@ -23,7 +23,7 @@ class PegawaiController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.autor.creat');
     }
 
     /**
@@ -34,7 +34,15 @@ class PegawaiController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'Nama'=>'required',
+        ]);
+
+        Pegawai::create($request->all());
+
+            return redirect()->route('admin.borrow.index')
+            
+                ->with('success','Pagawai created succesfully.');
     }
 
     /**
@@ -43,9 +51,9 @@ class PegawaiController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Pegawai $pegawai)
     {
-        //
+        return view('admin.borrow.show',compact('admin.borrow'));
     }
 
     /**
@@ -54,9 +62,9 @@ class PegawaiController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Pegawai $pegawai)
     {
-        //
+        return view('admin.borrow.edit',compact('admin.borrow'));
     }
 
     /**
@@ -66,9 +74,16 @@ class PegawaiController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Dokter $dokter)
     {
-        //
+        $request->validate([
+
+            ]);
+    
+            $pegawai->update($request->all());
+    
+            return redirect()->route('admin.borrow.index')
+            ->with('success','Pegawai update successfully');
     }
 
     /**
@@ -77,8 +92,11 @@ class PegawaiController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Pegwaia $pegawai)
     {
-        //
+        $pegawai->delete();
+
+        return redirect()->route('admin.borrow.index')
+        ->with('success','Pegawai deleted successfully');
     }
 }

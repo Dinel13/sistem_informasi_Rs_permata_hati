@@ -35,21 +35,18 @@ class PasienController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'id_pasien'=>'required',
-            'nama'=>'required',
-            'umur'=>'required',
-            'gender'=>'required',
-            'alamat'=>'required',
-            'penyakit'=>'required',
-            'id_dokter'=>'required',
-            'id_dokter'=>'required',
+            'id_bill',
+            'id_pasien',
+            'biaya_dokter',
+            'biaya_kaar',
+            'biaya_lab',
             ]);
 
-            Pasien::create($request->all());
+            Tagihans::create($request->all());
 
             return redirect()->route('admin.borrow.index')
             
-                ->with('success','Pasiens created succesfully.');
+                ->with('success','Tagihans created succesfully.');
             
     }
 
@@ -59,7 +56,7 @@ class PasienController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Pasien $pasien)
+    public function show(Tagihans $tagihans)
     {
         return view('admin.borrow.show',compact('admin.borrow'));
     }
@@ -70,7 +67,7 @@ class PasienController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Pasien $pasien)
+    public function edit(Tagihans $tagihans)
     {
         return view('admin.borrow.edit',compact('admin.borrow'));
     }
@@ -82,16 +79,16 @@ class PasienController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Pasien $pasien)
+    public function update(Request $request, Tagihans $tagihans)
     {
         $request->validate([
 
         ]);
 
-        $pasien->update($request->all());
+        $Tagihans->update($request->all());
 
         return redirect()->route('admin.borrow.index')
-        ->with('success','Pasien update successfully');
+        ->with('success','Tagihans update successfully');
     }
 
     /**
@@ -100,11 +97,11 @@ class PasienController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Pasien $pasien)
+    public function destroy(Tagihans $Tagihans)
     {
-        $pasien->delete();
+        $Tagihans->delete();
 
         return redirect()->route('admin.borrow.index')
-        ->with('success','Pasien deleted successfully');
+        ->with('success','Tagihans deleted successfully');
     }
 }
