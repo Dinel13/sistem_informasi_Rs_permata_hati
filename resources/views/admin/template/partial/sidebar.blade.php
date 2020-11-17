@@ -40,7 +40,7 @@
           </a>
         </li>
         <li class="nav-item">
-          <a href="{{route('gudang.index') }}" class="nav-link">
+          <a href="{{route('lab.index') }}" class="nav-link">
             <span class="text-light">
               <i class="fas fa-book "></i>
               <p class="text-light">laboratory</p>
@@ -48,7 +48,7 @@
           </a>
         </li>
         <li class="nav-item">
-          <a href="{{route('gudang.index') }}" class="nav-link">
+          <a href="{{route('kamar.index') }}" class="nav-link">
             <span class="text-light">
               <i class="fas fa-hospital "></i>
               <p class="text-light">Kamar</p>
@@ -56,7 +56,7 @@
           </a>
         </li>
         <li class="nav-item">
-          <a href="{{route('gudang.index') }}" class="nav-link">
+          <a href="{{route('dokter.index') }}" class="nav-link">
             <span class="text-light">
               <i class="fas fa-user-md "></i>
               <p class="text-light">Dokter</p>
