@@ -3,12 +3,12 @@
 @section('content')
 <div class="box">
     <div class="box-header">
-        <h3 class="box-title">Data Penulis</h3>
+        <h3 class="box-title">Data Semua Tagihan</h3>
         <br>
-        <a href="" class="btn btn-primary">Tambahkan Penulis</a>
+        <a href="" class="btn btn-primary">Tambahkan Tagihan</a>
         <br>
     </div>
-@include('admin.template.partial.alert')
+ @include('admin.template.partial.alert')
 
     <div class="box-body">
           
@@ -16,8 +16,10 @@
             <thead>
                 <tr>
                     <th>Id</th>
-                    <th>Nama</th>
-                    <th>Aksi</th>
+                    <th>pasien</th>
+                    <th>biaya dokter</th>
+                    <th>biaya kamar</th>
+                    <th>biaya lab</th>
                 </tr>
             </thead>
 
@@ -57,10 +59,18 @@
                     data: 'id'
                 },
                 {
-                    data: 'name'
+                    data: 'title'
                 },
                 {
-                    data: 'Aksi'
+                    data: 'desc'
+                },{
+                    data: 'autor'
+                },{
+                    data: 'cover'
+                },{
+                    data: 'qty'
+                }, {
+                    data : 'Aksi'
                 }
             ]
         });

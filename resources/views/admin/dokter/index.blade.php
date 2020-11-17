@@ -5,7 +5,7 @@
     <div class="box-header">
         <h3 class="box-title">Data Dokter</h3>
         <br>
-        <a href="" class="btn btn-primary">Tambahkan buku</a>
+        <a href="" class="btn btn-primary">Tambahkan Dokter</a>
         <br>
     </div>
  @include('admin.template.partial.alert')

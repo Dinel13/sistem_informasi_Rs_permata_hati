@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-class PasienController extends Controller
+class KamarsController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -13,7 +13,7 @@ class PasienController extends Controller
      */
     public function index()
     {
-        return view('admin.borrow.index');
+        return view('admin.kamar.index');
     }
 
     /**
@@ -23,7 +23,7 @@ class PasienController extends Controller
      */
     public function create()
     {
-        return view('admin.borrow.create');
+        return view('admin.kamar.create');
     }
 
     /**
@@ -42,7 +42,7 @@ class PasienController extends Controller
 
             kamars::create($request->all());
 
-            return redirect()->route('admin.borrow.index')
+            return redirect()->route('admin.kakmar.index')
             
                 ->with('success','kamar created succesfully.');
             
@@ -85,7 +85,7 @@ class PasienController extends Controller
 
         $kamars->update($request->all());
 
-        return redirect()->route('admin.borrow.index')
+        return redirect()->route('admin.kamar.index')
         ->with('success','kamars update successfully');
     }
 
@@ -99,7 +99,7 @@ class PasienController extends Controller
     {
         $kamars->delete();
 
-        return redirect()->route('admin.borrow.index')
+        return redirect()->route('admin.kamar.index')
         ->with('success','kamars deleted successfully');
     }
 }

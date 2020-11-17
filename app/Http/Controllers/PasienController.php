@@ -13,7 +13,7 @@ class PasienController extends Controller
      */
     public function index()
     {
-        return view('admin.borrow.index');
+        return view('admin.pasien.index');
     }
 
     /**
@@ -47,7 +47,7 @@ class PasienController extends Controller
 
             Pasien::create($request->all());
 
-            return redirect()->route('admin.borrow.index')
+            return redirect()->route('admin.pasien.index')
             
                 ->with('success','Pasiens created succesfully.');
             
@@ -90,7 +90,7 @@ class PasienController extends Controller
 
         $pasien->update($request->all());
 
-        return redirect()->route('admin.borrow.index')
+        return redirect()->route('admin.pasien.index')
         ->with('success','Pasien update successfully');
     }
 
@@ -104,7 +104,7 @@ class PasienController extends Controller
     {
         $pasien->delete();
 
-        return redirect()->route('admin.borrow.index')
+        return redirect()->route('admin.pasien.index')
         ->with('success','Pasien deleted successfully');
     }
 }

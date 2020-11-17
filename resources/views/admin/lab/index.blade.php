@@ -3,9 +3,9 @@
 @section('content')
 <div class="box">
     <div class="box-header">
-        <h3 class="box-title">Data Buku</h3>
+        <h3 class="box-title">Data Laboratoty</h3>
         <br>
-        <a href="" class="btn btn-primary">Tambahkan buku</a>
+        <a href="" class="btn btn-primary">Tambahkan Laboratoty</a>
         <br>
     </div>
  @include('admin.template.partial.alert')
@@ -16,11 +16,11 @@
             <thead>
                 <tr>
                     <th>Id</th>
-                    <th>Judul</th>
-                    <th>Deskripsi</th>
-                    <th>penulis</th>
-                    <th>sampul</th>
-                    <th>jumlah</th>
+                    <th>Pasien</th>
+                    <th>Dokter</th>
+                    <th>Jenis Tes</th>
+                    <th>Tanggal</th>
+                    <th>Jumlah</th>
                     <th>Aksi</th>
                 </tr>
             </thead>

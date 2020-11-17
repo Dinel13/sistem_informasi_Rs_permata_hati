@@ -22,7 +22,7 @@
 
         <li class="nav-header">Main Navigation</li>
         <li class="nav-item">
-          <a href="{{route('uang.index') }}" class="nav-link">
+          <a href="{{route('tagihan.index') }}" class="nav-link">
             <i class="fas fa-book text-light"></i>
             <p class="text-light">Tagihan</p>
           </a>

@@ -3,9 +3,13 @@
 @section('content')
 <div class="box">
     <div class="box-header">
-        <h3 class="box-title">Data Buku yang dipinjam</h3>
+        <h3 class="box-title">Data Semua Pasien</h3>
+
+        <a href="" class="btn btn-primary">Tambahkan Data Pasien</a>
+        <br>
+        <br>
     </div>
- @include('admin.template.partial.alert')
+    @include('admin.template.partial.alert')
 
     <div class="box-body">
 

@@ -20,7 +20,7 @@ Route::get('/', function () {
 
 Auth::routes(['verify' => true]);
 
-Route::get('/home', 'App\Http\Controllers\Homecontroller@index')->name('home')->middleware('verified');
+Route::get('/home', 'App\Http\Controllers\HomeController@index')->name('home')->middleware('verified');
 
 Route::get('/admin', function () {
     return view('admin.Home');
@@ -36,4 +36,10 @@ Route::get('/gudang', 'App\Http\Controllers\GudangController@index')->name('guda
 
 Route::get('/pasien', 'App\Http\Controllers\PasienController@index')->name('pasien.index');
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/kamar', [App\Http\Controllers\KamarsController::class, 'index'])->name('kamar.index');
+
+Route::get('/tagihan', [App\Http\Controllers\TagihansController::class, 'index'])->name('tagihan.index');
+
+Route::get('/dokter', [App\Http\Controllers\DokterController::class, 'index'])->name('dokter.index');
+
+Route::get('/laboratory', [App\Http\Controllers\LaboratoriesController::class, 'index'])->name('lab.index');

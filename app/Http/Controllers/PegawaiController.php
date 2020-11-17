@@ -13,7 +13,7 @@ class PegawaiController extends Controller
      */
     public function index()
     {
-        return view('admin.autor.index');
+        return view('admin.pegawai.index');
     }
 
     /**
@@ -23,7 +23,7 @@ class PegawaiController extends Controller
      */
     public function create()
     {
-        return view('admin.autor.creat');
+        return view('admin.pegawai.creat');
     }
 
     /**
