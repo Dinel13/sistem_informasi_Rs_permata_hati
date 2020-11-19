@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\dokter;
 
 class DokterController extends Controller
 {
@@ -13,6 +14,9 @@ class DokterController extends Controller
      */
     public function index()
     {
+        $dataDokter = dokter::all();
+        dd($dataDokter);
+
         return view('admin.dokter.index');
     }
 

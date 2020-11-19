@@ -13,7 +13,7 @@ class dokter extends Model
         'id_dokter',
         'nama',
         'umur',
-        'gender',['pria','wanita'],
+        'gender',
         'alamat',
     ];
 }
