@@ -13,7 +13,9 @@ class TagihansController extends Controller
      */
     public function index()
     {
-        return view('admin.tagihan.index');
+        $tagihans = Tagihans::all();
+        dd($tagihans);
+        return view('admin.tagihan.index', compact ('tagihans'));
     }
 
     /**
@@ -35,11 +37,11 @@ class TagihansController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'id_bill',
-            'id_pasien',
-            'biaya_dokter',
-            'biaya_kaar',
-            'biaya_lab',
+            'id_bill'=>'required',
+            'id_pasien'=>'required',
+            'biaya_dokter'=>'required',
+            'biaya_kamar'=>'required',
+            'biaya_lab'=>'required',
             ]);
 
             Tagihans::create($request->all());
@@ -58,6 +60,8 @@ class TagihansController extends Controller
      */
     public function show(Tagihans $tagihans)
     {
+        $tagihans = Tagihans::all();
+        dd($tagihans);
         return view('admin.borrow.show',compact('admin.borrow'));
     }
 
@@ -82,10 +86,21 @@ class TagihansController extends Controller
     public function update(Request $request, Tagihans $tagihans)
     {
         $request->validate([
-
+            'id_bill'=>'required',
+            'id_pasien'=>'required',
+            'biaya_dokter'=>'required',
+            'biaya_kamar'=>'required',
+            'biaya_lab'=>'required',
         ]);
 
-        $Tagihans->update($request->all());
+        Tagihans::where('id',$tagihans->id)
+        ->update([
+            'id_pasien'=>$request->id_pasien,
+            'biaya_dokter'=>$request->biaya_dokter,
+            'biaya_kamar'=>$request->kamar,
+            'biaya_lab'=>$request->biaya_lab
+            ]);
+            //  $Tagihans->update($request->all());
 
         return redirect()->route('admin.borrow.index')
         ->with('success','Tagihans update successfully');
@@ -99,8 +114,8 @@ class TagihansController extends Controller
      */
     public function destroy(Tagihans $Tagihans)
     {
-        $Tagihans->delete();
-
+        // $Tagihans->delete();
+        Tagihans::destroy($tagihans->id);
         return redirect()->route('admin.borrow.index')
         ->with('success','Tagihans deleted successfully');
     }

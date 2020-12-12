@@ -16,7 +16,7 @@ class CreateLaboratoriesTable extends Migration
         Schema::create('laboratories', function (Blueprint $table) {
             $table->increments('lab_no');
             $table->integer('id_pasien')->unsigned();
-            $table->foreign('id_pasien')->references('id_pasien')->on('pasiens')->onDelete('cascade');
+            $table->foreign('id_pasien')->references('id_pasien')->on('patiens')->onDelete('cascade');
             $table->integer('id_dokter')->unsigned();
             $table->foreign('id_dokter')->references('id_dokter')->on('dokters')->onDelete('cascade');
             $table->string('jenis_tes');

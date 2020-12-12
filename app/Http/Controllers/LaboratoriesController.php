@@ -13,7 +13,9 @@ class LaboratoriesController extends Controller
      */
     public function index()
     {
-        return view('admin.lab.index');
+        $laboratories = Laboratories::all();
+        dd($laboratories);
+        return view('admin.lab.index', compact('laboratory'));
     }
 
     /**
@@ -59,6 +61,8 @@ class LaboratoriesController extends Controller
      */
     public function show(Laboratories $laboratories)
     {
+        $laboratories = Laboratories::all();
+        dd($laboratories);
         return view('admin.borrow.show',compact('admin.borrow'));
     }
 
@@ -100,8 +104,8 @@ class LaboratoriesController extends Controller
      */
     public function destroy(Laboratories $laboratories)
     {
-        $laboratories->delete();
-
+        // $laboratories->delete();
+        Laboratories::destory($laboratories->id);
         return redirect()->route('admin.borrow.index')
         ->with('success','Laboratories deleted successfully');
     }

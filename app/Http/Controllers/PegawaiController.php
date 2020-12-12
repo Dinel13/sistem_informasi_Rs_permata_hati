@@ -13,7 +13,9 @@ class PegawaiController extends Controller
      */
     public function index()
     {
-        return view('admin.pegawai.index');
+        $pegawai = Pegawai::all();
+        dd($pegawai);
+        return view('admin.pegawai.index', compact('pegawai'));
     }
 
     /**
@@ -53,7 +55,9 @@ class PegawaiController extends Controller
      */
     public function show(Pegawai $pegawai)
     {
-        return view('admin.borrow.show',compact('admin.borrow'));
+        $pegawai = Pegawai::all();
+        dd($pegawai);
+        return view('admin.borrow.show', compact('admin.borrow'));
     }
 
     /**
@@ -77,10 +81,14 @@ class PegawaiController extends Controller
     public function update(Request $request, Dokter $dokter)
     {
         $request->validate([
-
+            'Nama'=>'required',
             ]);
-    
-            $pegawai->update($request->all());
+            
+            Pegawai::where('id',$pegawai->id)
+            ->update([
+                'Nama'=>$request->Nama
+            ]);
+            // $pegawai->update($request->all());
     
             return redirect()->route('admin.borrow.index')
             ->with('success','Pegawai update successfully');

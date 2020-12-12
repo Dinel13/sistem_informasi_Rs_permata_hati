@@ -13,7 +13,9 @@ class KamarsController extends Controller
      */
     public function index()
     {
-        return view('admin.kamar.index');
+        $kamars = Kamars::all();
+        dd($kamars);
+        return view('admin.kamar.index', compact('kamars'));
     }
 
     /**
@@ -35,8 +37,8 @@ class KamarsController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'id_kamar',
-            'tipe',
+            'id_kamar'=>'required',
+            'tipe'=>'required',
             'status',['available', 'unvailable'],
             ]);
 
@@ -56,6 +58,8 @@ class KamarsController extends Controller
      */
     public function show(Kamars $kamars)
     {
+        $kamars = Kamars::all();
+        dd($kamars);
         return view('admin.borrow.show',compact('admin.borrow'));
     }
 
@@ -80,10 +84,18 @@ class KamarsController extends Controller
     public function update(Request $request, kamars $kamars)
     {
         $request->validate([
-
+            'id_kamar'=>'required',
+            'tipe'=>'required',
+            'status',['available', 'unvailable']
         ]);
 
-        $kamars->update($request->all());
+        // $kamars->update($request->all());
+
+        Kamars::where('id', $kamars->id)
+        ->update([
+            'tipe'=>$request->tipe,
+            'status'=>$request->status,['available', 'unvailable'],
+        ]);
 
         return redirect()->route('admin.kamar.index')
         ->with('success','kamars update successfully');
@@ -97,8 +109,8 @@ class KamarsController extends Controller
      */
     public function destroy(Kamars $kamars)
     {
-        $kamars->delete();
-
+        // $kamars->delete();
+        kamars::destor($kamars->id);
         return redirect()->route('admin.kamar.index')
         ->with('success','kamars deleted successfully');
     }

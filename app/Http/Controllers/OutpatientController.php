@@ -13,6 +13,8 @@ class PasienController extends Controller
      */
     public function index()
     {
+        $outpatient = Outpatient::all();
+        dd($outpatient);
         return view('admin.borrow.index');
     }
 
@@ -56,6 +58,8 @@ class PasienController extends Controller
      */
     public function show(Outpatient $outpatient)
     {
+        $outpatient = Outpatient::all();
+        dd($outpatient);
         return view('admin.borrow.show',compact('admin.borrow'));
     }
 
@@ -80,10 +84,18 @@ class PasienController extends Controller
     public function update(Request $request, Outpatient $outpatient)
     {
         $request->validate([
-
+            'id_patients'=>'required',
+            'tanggal'=>'required',
+            'lab_no'=>'required',
+        ]);
+        Outpatient::where('id',$outpatient->id)
+        ->update([
+            'id_patients'=>$request->id_patient,
+            'tanggal'=>$request->tanggal,
+            'lab_no'=>$request->lab_no
         ]);
 
-        $outpatient->update($request->all());
+        // $outpatient->update($request->all());
 
         return redirect()->route('admin.borrow.index')
         ->with('success','Pasien update successfully');
@@ -97,8 +109,9 @@ class PasienController extends Controller
      */
     public function destroy(Outpatient $outpatient)
     {
-        $pasien->delete();
-
+        // $pasien->delete();
+        Outpatient::destroy($outpatient->id);
+        
         return redirect()->route('admin.borrow.index')
         ->with('success','Pasien deleted successfully');
     }

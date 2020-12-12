@@ -15,7 +15,7 @@ class CreateOutpatiensTable extends Migration
     {
         Schema::create('outpatiens', function (Blueprint $table) {
             $table->integer('id_pasien')->unsigned();
-            $table->foreign('id_pasien')->references('id_pasien')->on('pasiens')->onDelete('cascade');
+            $table->foreign('id_pasien')->references('id_pasien')->on('patiens')->onDelete('cascade');
             $table->dateTime('tanggal');
             $table->foreignId('lab_no');
             $table->timestamps();

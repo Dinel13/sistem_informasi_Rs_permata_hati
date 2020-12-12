@@ -13,7 +13,9 @@ class PasienController extends Controller
      */
     public function index()
     {
-        return view('admin.pasien.index');
+        $pasien = Pasien::all();
+        dd($pasien);
+        return view('admin.pasien.index', compact('pasien'));
     }
 
     /**
@@ -61,6 +63,8 @@ class PasienController extends Controller
      */
     public function show(Pasien $pasien)
     {
+        $pasien = Pasien::all();
+        dd($pasien);
         return view('admin.borrow.show',compact('admin.borrow'));
     }
 
@@ -85,10 +89,26 @@ class PasienController extends Controller
     public function update(Request $request, Pasien $pasien)
     {
         $request->validate([
-
+            'id_pasien'=>'required',
+            'nama'=>'required',
+            'umur'=>'required',
+            'gender'=>'required',
+            'alamat'=>'required',
+            'penyakit'=>'required',
+            'id_dokter'=>'required',
+            'id_dokter'=>'required',
         ]);
+            Pasien::Where('id',$pasien->id)
+            ->update(['nama'=>'required',
+            'umur'=>$request->umur,
+            'gender'=>$request->gender,
+            'alamat'=>$request->alamat,
+            'penyakit'=>$request->penyakit,
+            'id_dokter'=>$request->id_dokter,
+            'id_dokter'=>$request->id_dokter
+            ]);
 
-        $pasien->update($request->all());
+        // $pasien->update($request->all());
 
         return redirect()->route('admin.pasien.index')
         ->with('success','Pasien update successfully');
@@ -102,8 +122,8 @@ class PasienController extends Controller
      */
     public function destroy(Pasien $pasien)
     {
-        $pasien->delete();
-
+        // $pasien->delete();
+        Pasien::destroy($pasien->id);
         return redirect()->route('admin.pasien.index')
         ->with('success','Pasien deleted successfully');
     }

@@ -13,6 +13,8 @@ class KeuanganController extends Controller
      */
     public function index()
     {
+        $keuangan = Keuangan::all();
+        dd($keuangan);
         return view('admin.book.index');
     }
 
@@ -23,7 +25,7 @@ class KeuanganController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.borrow.create');
     }
 
     /**
@@ -34,7 +36,15 @@ class KeuanganController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+           
+            ]);
+
+            Keuangan::create($keuangan->all());
+
+            return redirect()->route('admin.borrow.index')
+            
+                ->with('success','data created succesfully.');
     }
 
     /**
@@ -43,9 +53,11 @@ class KeuanganController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Keuangan $keuangan)
     {
-        //
+        $keuangan = Keuangan::all();
+        dd($keuangan);
+        return view('admin.borrow.show',compact('admin.borrow'));
     }
 
     /**
@@ -54,9 +66,9 @@ class KeuanganController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Keuangan $keuangan)
     {
-        //
+        return view('admin.borrow.edit',compact('admin.borrow'));
     }
 
     /**
@@ -66,9 +78,18 @@ class KeuanganController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Keuangan $keuangan)
     {
-        //
+        $request->validate([
+        //idk
+            ]);
+
+            Keuangan::where('id',$keuangan->id)
+            ->update([
+               //idk
+            ]);
+            return redirect()->route('admin.borrow.index')
+            ->with('success','data update successfully');
     }
 
     /**
@@ -77,8 +98,11 @@ class KeuanganController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Keuangan $keuangan)
     {
-        //
+        Keuangan::destroy($keuangan->id);
+
+        return redirect()->route('admin.borrow.index')
+        ->with('success','data deleted successfully');
     }
 }
