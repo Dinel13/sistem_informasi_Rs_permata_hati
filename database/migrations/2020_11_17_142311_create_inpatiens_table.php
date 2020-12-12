@@ -15,7 +15,7 @@ class CreateInpatiensTable extends Migration
     {
         Schema::create('inpatiens', function (Blueprint $table) {
             $table->integer('id_pasien')->unsigned();
-            $table->foreign('id_pasien')->references('id_pasien')->on('pasiens')->onDelete('cascade');
+            $table->foreign('id_pasien')->references('id_pasien')->on('patiens')->onDelete('cascade');
             $table->integer('id_kamar')->unsigned();
             $table->foreign('id_kamar')->references('id_kamar')->on('kamars')->onDelete('cascade');
             $table->dateTime('tanggal_penerimaan');

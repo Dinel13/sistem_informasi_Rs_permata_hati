@@ -13,6 +13,8 @@ class PasienController extends Controller
      */
     public function index()
     {
+        $inpatients = Inpatients::all();
+        dd($inpatiens);
         return view('admin.borrow.index');
     }
 
@@ -46,7 +48,7 @@ class PasienController extends Controller
 
             return redirect()->route('admin.borrow.index')
             
-                ->with('success','Laboratories created succesfully.');
+                ->with('success','patients created succesfully.');
             
     }
 
@@ -58,6 +60,8 @@ class PasienController extends Controller
      */
     public function show(Intpatients $inpatients)
     {
+        $inpatiens = Inpatiens::all();
+        dd($inpatiens);
         return view('admin.borrow.show',compact('admin.borrow'));
     }
 
@@ -82,10 +86,21 @@ class PasienController extends Controller
     public function update(Request $request, Inpatients $inpatients)
     {
         $request->validate([
-
+            'id_pasien'=>'required',
+            'id_kamar'=>'required',
+            'tanggal_penerimaan'=>'required',
+            'tanggal_dismisi'=>'required',
+            'lab_no'=>'required',
         ]);
-
-        $pasien->update($request->all());
+            Inpatients::where('id', $inpatients->id)
+            ->update([
+                'id_pasien'=>$request->id_pasien,
+                'id_kamar'=>$request->id_kamar,
+                'tanggal_penerimaan'=>$request->tanggal_penerimaan,
+                'tanggal_dismisi'=>$request->tanggal_dismisi,
+                'lab_no'=>$request->lab_no
+            ]);
+        // $pasien->update($request->all());
 
         return redirect()->route('admin.borrow.index')
         ->with('success','Patients update successfully');
@@ -99,8 +114,8 @@ class PasienController extends Controller
      */
     public function destroy(Inpatients $inpatients)
     {
-        $inpatiens->delete();
-
+        // $inpatiens->delete();
+        Inpatients::destroy($inpatients->id);
         return redirect()->route('admin.borrow.index')
         ->with('success','Patients deleted successfully');
     }

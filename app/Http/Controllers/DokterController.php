@@ -14,10 +14,13 @@ class DokterController extends Controller
      */
     public function index()
     {
-        $dataDokter = dokter::all();
+        $dataDokter = Dokter::all();
         dd($dataDokter);
 
-        return view('admin.dokter.index');
+        return view('admin.dokter.index', compact('dataDokter'));
+        // $dataDokter = DB::table('dokters')->get();
+    
+        // (Opstion) return view('admin.dokter.index', ['dokter'=> $dokters]);
     }
 
     /**
@@ -62,6 +65,8 @@ class DokterController extends Controller
      */
     public function show(Dokter $dokter)
     {
+        $dataDokter = Dokter::all();
+        dd($dataDokter);
         return view('admin.borrow.show',compact('admin.borrow'));
     }
 
@@ -86,10 +91,22 @@ class DokterController extends Controller
     public function update(Request $request, Dokter $dokter)
     {
         $request->validate([
+            'id_dokter'=>'required',
+            'nama'=>'required',
+            'umur'=>'required',
+            'gender'=>'required',
+            'alamat'=>'required',
+            ]);
 
-        ]);
+            Dokter::where('id',$dokter->id)
+            ->update([
+                'nama'=>$request->nama,
+                'umur'=>$request->umur,
+                'gender'=>$request->gender,
+                'alamat'=>$request->alamat
+            ]);
 
-        $dokter->update($request->all());
+        // $dokter->update($request->all());
 
         return redirect()->route('admin.borrow.index')
         ->with('success','Dokter update successfully');
@@ -103,7 +120,9 @@ class DokterController extends Controller
      */
     public function destroy(Dokter $dokter)
     {
-        $dokter->delete();
+        // $dokter->delete();
+
+        Dokter::destroy($dokter->id);
 
         return redirect()->route('admin.borrow.index')
         ->with('success','Dokter deleted successfully');

@@ -26,19 +26,43 @@ Route::get('/keluar', [App\Http\Controllers\Auth\LoginController::class, 'logout
 //Route::get('/admin', function () {
  //   return view('admin.Home');
 //});
+//pegawai
+Route::resource('pegawai', 'PegawaiController');
 
-Route::get('/pegawai', 'App\Http\Controllers\PegawaiController@index')->name('pegawai.index')->middleware('auth');
+//keuangan
+Route::resource('keuangan', 'KeuanganController');
 
-Route::get('/keuangan', 'App\Http\Controllers\KeuanganController@index')->name('uang.index')->middleware('auth');
+// Route::get('/keuangan', 'App\Http\Controllers\KeuanganController@index')->name('uang.index')->middleware('auth');
 
-Route::get('/gudang', 'App\Http\Controllers\GudangController@index')->name('gudang.index')->middleware('auth');
+// Route::get('/gudang', 'App\Http\Controllers\GudangController@index')->name('gudang.index')->middleware('auth');
 
-Route::get('/pasien', 'App\Http\Controllers\PasienController@index')->name('pasien.index')->middleware('auth');
+//pasien
+// Route::get('/pasien', 'App\Http\Controllers\PasienController@index')->name('pasien.index')->middleware('auth');
+Route::resource('pasien', 'PasienController');
 
-Route::get('/kamar', [App\Http\Controllers\KamarsController::class, 'index'])->name('kamar.index')->middleware('auth');
+//kamar
+Route::resource('kamars', 'KamarsController');
 
-Route::get('/tagihan', [App\Http\Controllers\TagihansController::class, 'index'])->name('tagihan.index')->middleware('auth');
+//tagihan
+Route::resource('tagihans', 'TagihansController');
 
-Route::get('/dokter', [App\Http\Controllers\DokterController::class, 'index'])->name('dokter.index')->middleware('auth');
+//dokter
+Route::get('/dokter', 'App\Http\Controllers\DokterController@index')->name('dokter.index')->middleware('auth');
+Route::get('/dokter/create', [App\Http\Controllers\DokterController::class, 'create'])->name('dokter.create')->middleware('auth');
+Route::get('/dokter/{dokter}', [App\Http\Controllers\DokterController::class, 'show'])->name('dokter.show')->middleware('auth');
+Route::post('/dokter', 'App\Http\Controllers\DokterController@store')->name('dokter.store')->middleware('auth');
+Route::delete('/dokter/{dokter}', [App\Http\Controllers\DokterController::class, 'destroy'])->name('dokter.destroy')->middleware('auth');
+Route::get('/dokter/{dokter}/edit', 'App\Http\Controllers\DokterController@edit')->name('dokter.edit')->middleware('auth');
+Route::patch('/dokter/{dokter}', 'App\Http\Controllers\DokterController@update')->name('dokter.update')->middleware('auth');
 
-Route::get('/laboratory', [App\Http\Controllers\LaboratoriesController::class, 'index'])->name('lab.index')->middleware('auth');
+//lab
+// Route::get('/laboratory', [App\Http\Controllers\LaboratoriesController::class, 'index'])->name('lab.index')->middleware('auth');
+
+// (option) Route::resource('laboratory', 'LaboratoryController')->middleware('auth');
+Route::resource('laboratory', 'LaboratoriesController');
+
+//inpatients
+Route::resource('inpatients', 'InpatientsController');
+
+//outpatients
+Route::resource('outpatients', 'OutpatientsController');

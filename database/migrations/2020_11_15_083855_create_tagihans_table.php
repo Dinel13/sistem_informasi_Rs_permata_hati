@@ -16,7 +16,8 @@ class CreateTagihansTable extends Migration
         Schema::create('tagihans', function (Blueprint $table) {
             $table->increments('id_bill');
             $table->integer('id_pasien')->unsigned();
-            $table->foreign('id_pasien')->references('id_pasien')->on('pasiens')->onDelete('cascade');
+            // $table->foreign('id_pasien')->references('id_pasien')->on('dokters')->onDelete('cascade');
+            $table->foreign('id_pasien')->references('id_pasien')->on('patiens')->onDelete('cascade');
             $table->integer('biaya_dokter');
             $table->integer('biaya_kamar');
             $table->integer('biaya_lab');
